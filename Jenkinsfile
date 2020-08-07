@@ -1,11 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout'){
-            steps {
-                git 'git@github.com:Rohit0509/spring-petclinic.git'
-            }
-        }
+        
         stage('Build'){
             steps {
                 sh 'mvn clean package'

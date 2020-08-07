@@ -5,7 +5,7 @@ pipeline {
         stage('Build'){
             steps {
                 sh 'mvn clean package'
-                junit '**/target/test-reports/TEST-*.xml'
+                
                 archiveArtifacts artifacts : 'target/*.jar'
             }
         }

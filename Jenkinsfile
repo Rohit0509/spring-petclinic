@@ -13,8 +13,7 @@ pipeline {
             steps {
                 input 'Do you approve the deployment?'
                 sh 'cp target/*.jar /var/apps/'
-                sh 'mv *.jar build.jar'
-                sh 'java -jar /var/apps/build.jar &'
+                sh 'java -jar /var/apps/*.jar &'
             }
         }
     }

@@ -4,8 +4,10 @@ pipeline {
         
         stage('Build'){
             steps {
-                sh 'mvn clean package'
-                
+                sh 'mvn clean'
+                sh 'mvn install'
+                sh 'mvn sonar:sonar'
+                sh 'mvn package'
                 archiveArtifacts artifacts : 'target/*.jar'
             }
         }

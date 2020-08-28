@@ -15,7 +15,8 @@ pipeline {
         }
         stage('Deploy'){
             steps {
-                input 'Do you approve the deployment?'
+                //input 'Do you approve the deployment?'
+                sh 'rm -rf /var/apps/*'
                 sh 'cp target/*.jar /var/apps/'
                 sh 'java -jar /var/apps/*.jar &'
             }

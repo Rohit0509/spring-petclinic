@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh 'mvn clean'
                 sh 'mvn install'
-                withSonarQubeEnv('sonar-6') { 
+                withSonarQubeEnv('sonar-1') { 
                    sh 'mvn sonar:sonar'
                 }
                 sh 'mvn package'

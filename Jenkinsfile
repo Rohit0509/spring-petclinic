@@ -6,7 +6,9 @@ pipeline {
             steps {
                 sh 'mvn clean'
                 sh 'mvn install'
-                sh 'mvn sonar:sonar'
+                withSonarQubeEnv('sonar-6') { 
+                   sh 'mvn sonar:sonar'
+                }
                 sh 'mvn package'
                 archiveArtifacts artifacts : 'target/*.jar'
             }

@@ -19,7 +19,7 @@ pipeline {
                 timeout(time: 1, unit: 'HOURS') {
                     script {
                         def qg = waitForQualityGate() 
-                        sh "echo ${qg.serverUrl} ${qg.taskId} ${qg.analysedAt}"
+                        sh 'echo " here==>>> ${qg.serverUrl} ${qg.taskId} ${qg.analysedAt}"'
                         if (qg.status != 'OK' || true ) {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }                        

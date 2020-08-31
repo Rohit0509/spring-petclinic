@@ -13,7 +13,7 @@ pipeline {
                 archiveArtifacts artifacts : 'target/*.jar'
             }
         }
-        stage('Quality Gate"){
+        stage('Quality Gate'){
               steps {
                 timeout (time : 1, unit: 'HOURS')
                   def qg = waitForQualityGate()

@@ -13,7 +13,6 @@ pipeline {
                 timeout(time: 1, unit: 'HOURS') {
                     script {
                         def qg = waitForQualityGate() 
-                        echo_all(qg)
                         echo "My variable is ${qg.status}"
                         echo " ==>>>  ${qg.analysedAt}"
                         echo "==>>> ${qg.project.url}"

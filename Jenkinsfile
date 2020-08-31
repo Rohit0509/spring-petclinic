@@ -14,8 +14,7 @@ pipeline {
                     script {
                         def qg = waitForQualityGate() 
                         echo "My variable is ${qg.status}"
-                        echo " ==>>>  ${qg.analysedAt}"
-                        echo "==>>> ${qg.project.url}"
+                        echo " ==>>>  ${qg.name}"
                         if (qg.status != 'OK' ) {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }                        

@@ -14,7 +14,6 @@ pipeline {
                     script {
                         def qg = waitForQualityGate() 
                         echo "My variable is ${qg.status}"
-                        echo "${qg.taskId}"
                         echo "${qg.analysedAt}"
                         echo "${qg.project.url}"
                         if (qg.status != 'OK' ) {

@@ -14,16 +14,15 @@ pipeline {
             }
         }
         stage('Quality Gate'){
-              steps {
-                  timeout (time : 1, unit: 'HOURS') {
-                       def qg = waitForQualityGate()
-                        sh "echo ${qg}"
-                        if(qg.status != 'OK'){
-                            error "Pipeline aborted due to quality gate failure ${qg.status}"
-                         }
-                        sh "echo 'out'" 
-                  }
-              }      
+              timeout (time : 1, unit: 'HOURS') {
+                   def qg = waitForQualityGate()
+                    sh "echo ${qg}"
+                    if(qg.status != 'OK'){
+                        error "Pipeline aborted due to quality gate failure ${qg.status}"
+                     }
+                    sh "echo 'out'" 
+              }
+                    
         }
         stage('Deploy'){
             steps {

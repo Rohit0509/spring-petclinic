@@ -2,30 +2,33 @@ pipeline {
     agent any
     stages {
         
-        stage('Build'){
+        stage('Test/Quality Gate'){
             steps {
                 sh 'mvn clean'
                 sh 'mvn install'
                 withSonarQubeEnv('sonar-1') { 
                    sh 'mvn sonar:sonar'
                 }
-                sh 'mvn package'
-                archiveArtifacts artifacts : 'target/*.jar'
-            }
-        }
-        
-        stage("SonarQube Quality Gate") { 
-            steps {
+
                 timeout(time: 1, unit: 'HOURS') {
                     script {
                         def qg = waitForQualityGate() 
                         echo "My variable is ${qg.status}"
-                        echo "${qg}"
+                        echo "${qg.taskId}"
+                        echo "${qg.analysedAt}"
+                        echo "${qg.project.url}"
                         if (qg.status != 'OK' ) {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }                        
                     }   
                 }
+            }
+        }
+        
+        stage("Build") { 
+            steps {
+                sh 'mvn package'
+                archiveArtifacts artifacts : 'target/*.jar'    
             }
         }
         
